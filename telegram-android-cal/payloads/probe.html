@@ -1,0 +1,16 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+html,body{margin:0;background:#101722;color:#d9f99d;font:14px/1.4 monospace}
+main{padding:14px;white-space:pre-wrap;word-break:break-all}
+</style>
+<main id="probe">TG-WIDGET-PROBE
+LOCAL-TEMPLATE</main>
+<script>
+const marker = new URL(location.href).searchParams.get("marker") || "LOCAL-TEMPLATE";
+const text = "TG-WIDGET-PROBE\n" + marker;
+document.getElementById("probe").textContent = text;
+document.body.dataset.telegramProbe = marker;
+console.log(text);
+</script>

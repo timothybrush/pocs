@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+html,body{margin:0;background:#0b1020;color:#d6e7ff;font:14px/1.45 monospace}
+pre{box-sizing:border-box;margin:0;padding:16px;white-space:pre-wrap;word-break:break-word}
+</style>
+<pre id="log">widget boot</pre>
+<script>
+const lines = [];
+const out = document.getElementById("log");
+function log(...parts) {
+  const line = parts.map(value => typeof value === "string" ? value : JSON.stringify(value)).join(" ");
+  lines.push(line);
+  out.textContent = lines.join("\n");
+  console.log(line);
+}
+addEventListener("error", event => log("error", event.message, event.filename, event.lineno));
+addEventListener("unhandledrejection", event => log("rejection", String(event.reason)));
+log("runtime", typeof globalThis, typeof Promise, typeof Uint8Array);
+
+// Put the smallest bug trigger here. Keep each primitive/result as one log line.
+log("done");
+</script>
